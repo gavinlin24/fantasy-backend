@@ -2,9 +2,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import ALLOWED_ORIGINS
 from app.routes import leaderboard_routes, news_routes, suggest_routes
+from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
 
 app = FastAPI(title="Fantasy Basketball API")
 
+app.add_middleware(HTTPSRedirectMiddleware)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
